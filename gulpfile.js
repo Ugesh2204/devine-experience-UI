@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const browserSync = require('browser-sync').create();
 
 
 gulp.task('message', function(){
@@ -21,7 +22,9 @@ gulp.task('sass', function(done){
     //so we are basically say any sass file in that folder
      gulp.src('src/sass/*.scss')
          .pipe(sass().on('error',sass.logError))
-         .pipe(gulp.dest('dist/css'));
+         .pipe(gulp.dest('dist/css'))
+         .pipe(browserSync.stream());
+        
 
          done();
 });
@@ -35,9 +38,28 @@ gulp.task('copyFont', function() {
         ])
         .pipe(gulp.dest('dist/vendor/font-awesome'));
     });
+//New version 
+function watch() {
+    browserSync.init({
+        server: {
+            baseDir: 'dist/'
+            
+        }
+    });
+    gulp.watch('src/*.html',['copyHtml']).on('change', browserSync.reload);
+    gulp.watch('src/sass/*.scss', ['sass']);
+    
+    
+    
+}
+
+exports.watch = watch;
+
+
+
 
 //automate all task
-    gulp.task('default',['message','copyHtml','sass','copyFont']);
-//watch all my css
+    gulp.task('default',['watch','copyHtml','message','sass','copyFont']);
+
 
 
