@@ -1,2 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  font-weight: normal; }
+
 body {
-  background: #cccccc; }
+  margin: 0;
+  background: linear-gradient(to right, red 29.2%, white 0%);
+  height: 100vh; }
+
+.wrapper-container {
+  width: 1200px;
+  margin: 0 auto; }
+
+img {
+  width: 100%; }
+
+.hamburger-menu {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-top: 2rem; }
+
+header {
+  display: grid;
+  grid-template-columns: 316px 270px  1fr;
+  grid-template-areas: 'logo search nav '; }
+
+.logo {
+  grid-area: logo;
+  display: flex;
+  align-items: center; }
+
+.logo-wrapper {
+  margin-left: 4.5rem; }
+  .logo-wrapper h2 {
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #fff; }
+  .logo-wrapper h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #fff; }
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center; }
+
+nav {
+  grid-area: nav;
+  display: flex;
+  align-items: center; }
+  nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0; }
+  nav a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: #010101;
+    font-weight: 600; }
+    nav a:hover {
+      color: #ff2c2b; }
+  nav .account {
+    margin-left: 6rem; }

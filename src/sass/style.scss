@@ -1,3 +1,109 @@
-$bgColor : #cccccc;
+@import 'variables';
 
-body {background:$bgColor;}
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    font-weight: normal; 
+}
+
+body{
+    margin: 0;
+    background: linear-gradient(to right, red 29.2%, white 0%);
+    height:100vh;
+}
+
+//wrapper-container
+.wrapper-container {
+    width:1200px;
+    margin: 0 auto;
+}
+
+img {
+    width:100%;
+}
+
+//Hamburger menu position absolute with wrapper-container as parent
+.hamburger-menu {
+    color:#fff;
+    font-size: 2.5rem;
+    margin-top:2rem;
+}
+
+
+//layout header
+header {
+    display: grid;
+    grid-template-columns: 316px 270px  1fr;
+    grid-template-areas:
+    'logo search nav ';
+}
+//logo
+.logo {
+    grid-area: logo;
+    display: flex;
+    align-items: center
+}
+//logo wrapper
+.logo-wrapper {
+    margin-left:4.5rem;
+    h2 {
+        font-size:2rem;
+        text-transform:uppercase;
+        color:#fff;
+    }
+    h3 {
+        font-size:18px;
+        text-transform:uppercase;
+        color:#fff;
+    }
+}
+
+//search bar icon 
+.search {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+//navigation layout
+nav {
+    grid-area: nav;
+    //flex is for icon
+    display: flex;
+    //center vertical the icon
+    align-items: center;
+
+    //main nav ul
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+    }
+
+    a {
+        display: block;
+        padding: 1rem;
+        text-decoration:none;
+        color: $black-color;
+        font-weight: 600;
+        &:hover {
+            color: $redorange-color;
+        }
+    }
+    //User Account register
+    .account {
+        margin-left:6rem;
+    }
+}
+
+
+
+
+
+
+
+
+    

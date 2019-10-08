@@ -38,5 +38,6 @@ gulp.task('copyFont', function() {
 
 //automate all task
     gulp.task('default',['message','copyHtml','sass','copyFont']);
+//watch all my css
 
 
