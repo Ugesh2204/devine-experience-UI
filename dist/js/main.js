@@ -1,0 +1,1 @@
+$(function(){$(".icon").click(function(){$(".search").toggleClass("activate")})});

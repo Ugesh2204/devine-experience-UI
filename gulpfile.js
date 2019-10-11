@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const uglify = require('gulp-uglify');
 const browserSync = require('browser-sync').create();
+
 
 
 gulp.task('message', function(){
@@ -30,6 +32,18 @@ gulp.task('sass', function(done){
 });
 
 
+// Minify js compress js file
+
+gulp.task('minify', function(done){
+    gulp.src('src/js/*.js')
+     .pipe(uglify())
+     //set destination
+     .pipe(gulp.dest('dist/js'));
+
+     done();
+ })
+
+
 //font awesome
 gulp.task('copyFont', function() {
     gulp.src([
@@ -38,6 +52,7 @@ gulp.task('copyFont', function() {
         ])
         .pipe(gulp.dest('dist/vendor/font-awesome'));
     });
+
 //New version 
 function watch() {
     browserSync.init({
@@ -48,9 +63,9 @@ function watch() {
     });
     gulp.watch('src/*.html',['copyHtml']).on('change', browserSync.reload);
     gulp.watch('src/sass/*.scss', ['sass']);
-    
-    
-    
+    gulp.watch('src/js/*.js', ['minify']);
+   
+ 
 }
 
 exports.watch = watch;
@@ -59,7 +74,7 @@ exports.watch = watch;
 
 
 //automate all task
-    gulp.task('default',['watch','copyHtml','message','sass','copyFont']);
+    gulp.task('default',['watch','copyHtml','minify','sass','copyFont']);
 
 
 
