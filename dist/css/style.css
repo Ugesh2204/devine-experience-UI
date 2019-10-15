@@ -7,12 +7,13 @@
 
 body {
   margin: 0;
-  background: linear-gradient(to right, red 29.2%, white 0%);
+  background: linear-gradient(to right, #fd2b34 29.2%, white 0%);
   height: 100vh; }
 
 .wrapper-container {
   width: 1200px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  position: relative; }
 
 img {
   width: 100%; }
@@ -96,9 +97,109 @@ nav {
       width: 0%;
       transition: width 0.9s; }
     nav a:hover {
-      color: #ff2c2b; }
+      color: #fd2b34; }
       nav a:hover:before {
         width: 80%;
         transition: width 0.9s; }
   nav .account {
     margin-left: 6rem; }
+    nav .account .fa-user {
+      font-size: 1.2rem; }
+
+.Bar-absolute {
+  width: 400px;
+  height: 23px;
+  position: absolute;
+  top: 188px;
+  left: 134px;
+  background: #fff3f3;
+  background: linear-gradient(90deg, #fff3f3 0%, white 46.2%, #fd2b34 46%, #fd2b34 94%, white 90%, white 96%, #fd2b34 0%, #fd2b34 100%); }
+
+.container-wrapper {
+  display: grid;
+  margin-top: 4.5rem;
+  grid-gap: 50px;
+  grid-template-columns: 316px 1fr;
+  grid-template-areas: 'left-content right-content'; }
+
+.left-content {
+  grid-area: left-content; }
+  .left-content blockquote {
+    margin-top: 2rem;
+    position: relative;
+    color: #ff9495; }
+    .left-content blockquote p {
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 600;
+      padding: 1rem; }
+    .left-content blockquote .fa-quote-left, .left-content blockquote .fa-quote-right {
+      font-size: 40px; }
+    .left-content blockquote .fa-quote-right {
+      position: absolute;
+      top: 107px;
+      left: 101px; }
+  .left-content .sideGallery-wrapper {
+    display: grid;
+    margin-top: 2rem;
+    grid-template-columns: 35px 1fr;
+    grid-template-areas: 'season-nav side-gallery-season'; }
+  .left-content .season-nav {
+    background-color: aqua;
+    grid-area: season-nav; }
+    .left-content .season-nav ul {
+      display: flex;
+      list-style: none;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      transform: rotate(180deg); }
+      .left-content .season-nav ul a {
+        display: block;
+        padding: 1rem; }
+  .left-content .side-gallery-season {
+    grid-area: side-gallery-season; }
+
+.right-content {
+  grid-area: right-content;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 350px 380px 1fr;
+  grid-template-areas: 'runway-content runway-gallery social'; }
+
+.runway-content {
+  grid-area: runway-content;
+  margin-top: 5rem; }
+  .runway-content h1 {
+    font-size: 2.2rem; }
+  .runway-content p {
+    margin-top: 1.5rem; }
+
+.runway-gallery {
+  grid-area: runway-gallery;
+  display: flex;
+  height: 345px; }
+  .runway-gallery .trending {
+    width: 80px;
+    position: relative; }
+    .runway-gallery .trending h1 {
+      position: absolute;
+      color: #dedbdb;
+      top: 141px;
+      left: -110px;
+      font-size: 3.5em;
+      font-family: 'Audiowide', cursive;
+      transform: rotate(-90deg); }
+  .runway-gallery .img-gallery-container {
+    width: 300px; }
+
+.social {
+  grid-area: social;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center; }
+  .social a {
+    color: #000;
+    font-size: 1.2rem;
+    margin-right: 10px;
+    margin-top: 10px; }
