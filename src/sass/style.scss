@@ -1,5 +1,6 @@
 @import 'variables';
 
+
 *{
     margin:0;
     padding: 0;
@@ -11,7 +12,11 @@
 body{
     margin: 0;
     background: linear-gradient(to right, $redorange-color 29.2%, white 0%);
-    height:100vh;
+    background-repeat: no-repeat;
+    //height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+   //height: calc(var(--vh, 1vh) * 100);
+   //overflow-y: hidden; 
+   
 }
 
 //wrapper-container
@@ -19,19 +24,107 @@ body{
     width:1200px;
     margin: 0 auto;
     position: relative;
+    
 }
+
+// .myheight {
+//     width:100%;
+//     height:60px;
+// }
 
 img {
     width:100%;
 }
 
 //Hamburger menu position absolute with wrapper-container as parent
-.hamburger-menu {
-    color:#fff;
-    font-size: 2.5rem;
-    margin-top:2rem;
+
+.menu-mobile-toggler {
+    position: absolute;
+    top: -30px;
+    right: 36px;
+    z-index: 999;
+    height: 28px;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    span{
+    position: absolute;
+    width: 28px;
+    height: 2.5px;
+    background: $redorange-color;
+    border-radius: 20px;
+    transition: 500ms cubic-bezier(0.77,0,0.175, 1);
+        &:before {
+            position: absolute;
+            content: '';
+            top: -8px;
+            width: 28px;
+            height: 2.5px;
+            background: $redorange-color;
+        }
+        &:after {
+            position: absolute;
+            content: '';
+            top: 8px;
+            width: 28px;
+            height: 2.5px;
+            background: $redorange-color;
+        }
+    }   
 }
 
+//Add active class throught javascript
+.menu-mobile-toggler.active > span {
+    background: transparent;
+
+}
+
+.menu-mobile-toggler.active > span::after,
+.menu-mobile-toggler.active > span::before {
+    background: $redorange-color;
+    top:0;
+}
+
+.menu-mobile-toggler.active > span::before {
+    transform: rotate(-225deg);
+}
+
+.menu-mobile-toggler.active > span::after {
+    transform: rotate(225deg);
+}
+
+//End of active class
+//hamburger-menu
+.hamburger-menu {
+    position: absolute;
+    background: $redorange-color;
+    z-index: 998;
+    left:-90%;
+    top:-35px;
+    opacity: 1;
+    height: 100vh;
+    width: 60%;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 300ms left cubic-bezier(0.77,0,0.175,1);
+}
+
+.hamburger-menu.active {
+    left: -1%;
+}
+
+.hamburger-menu a {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    display: block;
+    color: #ffffff;
+}
 
 //layout header
 header {
@@ -39,12 +132,15 @@ header {
     grid-template-columns: 316px 270px  1fr;
     grid-template-areas:
     'logo search nav ';
+    margin-top:35px;
+    margin-bottom: 35px;
+    height: 61px;
 }
 //logo
 .logo {
     grid-area: logo;
     display: flex;
-    align-items: center
+    align-items: center;
 }
 //logo wrapper
 .logo-wrapper {
@@ -94,16 +190,11 @@ header {
             }
             
         }
-        // .activate {
-        //    width: 150px !important;
-        // }
+
             
     }
 
 }
-
-    
-
 
 //navigation layout
 nav {
@@ -167,7 +258,7 @@ nav {
     width: 400px;
     height: 23px;
     position: absolute;
-    top:188px;
+    top:99px;
     left:134px;
     background: rgb(255,243,243);
     background: linear-gradient(90deg, #fff3f3 0%, white 46.2%, #fd2b34 46%, #fd2b34 94%, white 90%, white 96%, #fd2b34 0%, #fd2b34 100%);
@@ -178,7 +269,7 @@ nav {
 //Container-wrapper section
 .container-wrapper {
     display: grid;
-    margin-top: 4.5rem;
+    height: calc(100vh - 131px);
     grid-gap: 50px;
     grid-template-columns: 316px 1fr;
     grid-template-areas:
@@ -219,27 +310,83 @@ nav {
 
     //Season navigation
     .season-nav {
-        background-color: aqua;
         grid-area: season-nav;
 
         ul{
             display: flex;
             list-style: none;
             writing-mode: vertical-lr;
-            text-orientation: mixed;
             transform: rotate(180deg);
+            position: relative;
             
 
-            a{
+            a {
                 display: block;
+                color: #ffffff;
+                text-decoration: none;
                 padding:1rem;
+                transform: rotate(0deg);
+               
+               
+                &:before{
+                    background: #ffffff;
+                    -webkit-transition: height 2s; 
+                    bottom: 18px;
+                    content: "";
+                    height: 0%;
+                    left: 10px;
+                    position: absolute;
+                    width: 2px;
+                    transform: rotate(0deg);
+                    transition: height 0.9s linear;
+                   
+                }
+
+                &:hover {
+                    color: #ffffff;
+                    &:before {
+                        height: 55%;
+                        transition: height 0.9s;
+                    }
+                }
                 
             }
         }
     }
-
+ //Side-gallery-season
     .side-gallery-season {
         grid-area: side-gallery-season;
+        position:relative;
+        .inner-side-gallery {
+            position: absolute;
+            width:213px;
+            height: 165px;
+            top:154px;
+            left:120px;
+
+            .side-gallery {
+                position:relative;
+                .side-gallery-nav-up {
+                    position: absolute;
+                    top:41px;
+                    left:-45px;
+                    
+                    a {
+                        color:#ffffff;
+                        font-size: 1.8rem;
+                    }
+                }
+                .side-gallery-nav-down {
+                    position: absolute;
+                    top:100px;
+                    left:-45px;
+                    a {
+                        color:#ffffff;
+                        font-size: 1.8rem;
+                    }
+                }
+            }
+        }
     }
 
 }
@@ -287,11 +434,18 @@ nav {
         }
     }
     .img-gallery-container {
-     width:300px;
+        position: relative;
+        width:300px;
+        .Bar-absolute-under-runway {
+            width: 236px;
+            height: 8px;
+            position: absolute;
+            bottom:-42px;
+            right:0px;
+            background: rgb(253,43,52);
+            background: linear-gradient(90deg, #fd2b34 0%, #fd2b34 3%, white 3%, white 5%, #fd2b34 0%, #fd2b34 100%, #fd2b34 100%, #fd2b34 100%, #fd2b34 100%);
+        }
     }
-
-    
-
 }
 
 .social {
@@ -310,6 +464,345 @@ nav {
 }
 
 
+/*--Responsive @Media queries--*/
+
+@media (max-width:360px) and (min-width:0px){
+    body {
+        background: #ffffff; 
+    }
+
+    //wrapper-container
+    .wrapper-container {
+        width:100%;
+        margin: 0 auto;
+        padding: 1rem;
+       
+    }
+
+
+    //Hamburger menu position absolute with wrapper-container as parent
+
+    .menu-mobile-toggler {
+
+        top: 11px;
+        right: 43px;   
+    }
+
+    //hamburger-menu
+    .hamburger-menu {
+        left:-100%;
+        top:0px;
+        opacity: 1;
+        height: 100vh;
+        width: 89%;
+        padding: 100px;  
+        
+    }
+
+    //layout header
+    header {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        'logo logo'
+        'search nav'
+        ; 
+        background:$redorange-color;
+        margin-bottom: 0px;
+    }
+
+    //logo
+    .logo {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    //logo wrapper
+    .logo-wrapper {
+        margin-left:0rem;
+    }
+
+    //search bar icon 
+    .search {
+        align-items: center;
+        justify-content: center;
+        margin-left: 0px;
+        
+        form {
+            input[type=text] {
+                width: 180px;
+                &:focus {
+                    width: 250px;
+                }
+            }     
+        }
+    }
+
+
+    //navigation layout
+    nav {
+        //main nav ul
+        ul {
+            display: none;
+        }
+
+        //User Account register
+        .account {
+            margin-left:0rem;
+            margin-right: 1rem;
+            .fa-user {
+                font-size:1.2rem;
+            }
+        }
+    }
+
+    //Bar-Absolute
+    .Bar-absolute {
+        display: none;
+    }
+
+
+    //Container-wrapper section
+    .container-wrapper {
+        height: calc(100vh - 102px);
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        'left-content'
+        'right-content';
+    }
+
+    .left-content {
+        display:none;
+    }
+
+    //right-content
+    .right-content {
+        grid-gap: 10px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        'runway-content'
+        'runway-gallery' 
+        'social';
+    }
+
+    .runway-content {
+        grid-area: runway-content;
+        margin-top:1rem;
+    
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+        }
+    
+        p {
+            margin-top:0.8rem;
+            text-align: center;
+        }
+    }
+
+    .runway-gallery {
+        justify-content: center;
+        .trending {
+            width:45px;
+            h1 {
+                top: 141px;
+                left: -121px;
+                font-size: 3rem;
+                color:$redorange-color;
+
+            }
+        }
+        .img-gallery-container {
+            width:280px;
+            .Bar-absolute-under-runway {
+                display:none;
+            }
+        }
+    }
+    
+    //Social
+    .social {
+        flex-direction: row;
+        
+        a {
+            color:#000;
+            margin-right:0px;
+            margin-top:0px;
+    
+        }
+    
+    }
+
+}
+
+//Tablette
+
+@media (max-width:640px) and (min-width:361px){
+    body {
+        background: #ffffff; 
+    }
+
+    //wrapper-container
+    .wrapper-container {
+        width:100%;
+        margin: 0 auto;
+        padding: 1rem;
+       
+    }
+
+
+    //Hamburger menu position absolute with wrapper-container as parent
+
+    .menu-mobile-toggler {
+
+        top: 11px;
+        right: 43px;   
+    }
+
+    //hamburger-menu
+    .hamburger-menu {
+        left:-100%;
+        top:0px;
+        opacity: 1;
+        height: 100vh;
+        width: 89%;
+        padding: 100px;  
+        
+    }
+
+    //layout header
+    header {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        'logo logo'
+        'search nav'
+        ; 
+        background:$redorange-color;
+        margin-bottom: 0px;
+    }
+
+    //logo
+    .logo {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    //logo wrapper
+    .logo-wrapper {
+        margin-left:0rem;
+    }
+
+    //search bar icon 
+    .search {
+        align-items: center;
+        justify-content: center;
+        margin-left: 0px;
+        
+        form {
+            input[type=text] {
+                width: 180px;
+                &:focus {
+                    width: 250px;
+                }
+            }     
+        }
+    }
+
+
+    //navigation layout
+    nav {
+        //main nav ul
+        ul {
+            display: none;
+        }
+
+        //User Account register
+        .account {
+            margin-left:0rem;
+            margin-right: 1rem;
+            .fa-user {
+                font-size:1.2rem;
+            }
+        }
+    }
+
+    //Bar-Absolute
+    .Bar-absolute {
+        display: none;
+    }
+
+
+    //Container-wrapper section
+    .container-wrapper {
+        height: calc(100vh - 102px);
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        'left-content'
+        'right-content';
+    }
+
+    .left-content {
+        display:none;
+    }
+
+    //right-content
+    .right-content {
+        grid-gap: 10px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        'runway-content'
+        'runway-gallery' 
+        'social';
+    }
+
+    .runway-content {
+        grid-area: runway-content;
+        margin-top:1rem;
+    
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+        }
+    
+        p {
+            margin-top:0.8rem;
+            text-align: center;
+        }
+    }
+
+    .runway-gallery {
+        justify-content: center;
+        .trending {
+            width:45px;
+            h1 {
+                top: 141px;
+                left: -121px;
+                font-size: 3rem;
+                color:$redorange-color;
+
+            }
+        }
+        .img-gallery-container {
+            width:280px;
+            .Bar-absolute-under-runway {
+                display:none;
+            }
+        }
+    }
+    
+    //Social
+    .social {
+        flex-direction: row;
+        
+        a {
+            color:#000;
+            margin-right:0px;
+            margin-top:0px;
+    
+        }
+    
+    }
+
+}
 
 
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>Devine Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css"/>
     <link href="vendor/font-awesome/css/all.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Exo+2:100,100i,200,200i,300,300i,400,400i,
@@ -12,10 +13,20 @@
 <body>
     
     <div class="wrapper-container">
-        <!--hamberger-menu to position absolute-->
-        <div class="hamburger-menu">
-            <i class="fas fa-bars"></i>
+         <!--hamberger-menu to position absolute-->
+        
+         <div class="hamburger-menu">
+            <!-- <i class="fas fa-bars"></i> -->
+            <a href="#">TRENDING</a>
+            <a href="#">COLLECTION</a>
+            <a href="#">SHOWS</a>
+            <a href="#">MY WARDROBE</a>
         </div>
+
+        <!-- Start Menu-mobile-icon-->
+        <div class="menu-mobile-toggler">
+            <span></span>
+        </div> <!-- End Menu-mobile-icon-->
         <!--Start header-->
         <header> 
             <div class="logo">
@@ -40,7 +51,6 @@
                     <li><a href="#">TRENDING</a></li>
                     <li><a href="#">COLLECTION</a></li>
                     <li><a href="#">SHOWS</a></li>
-                
                     <li><a href="#">MY WARDROBE</a></li>
                 </ul>
                 <!--User Account register-->
@@ -53,7 +63,6 @@
 
         <!--Bar-Absolute-->
         <div class="Bar-absolute">
-
         </div>
         <!--End Bar-Absolute-->
 
@@ -82,7 +91,15 @@
                     </div>  <!--End season-nav-->
                     <div class="side-gallery-season">
                         <div class="inner-side-gallery">
-                            <img src="img/season_one.jpg"/>
+                            <div class="side-gallery">
+                                <img src="img/season_one.jpg"/>
+                                <div class="side-gallery-nav-up">
+                                    <a href="#"><i class="fas fa-chevron-circle-up"></i></a>
+                                </div>
+                                <div class="side-gallery-nav-down">
+                                    <a href="#"><i class="fas fa-chevron-circle-down"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -101,20 +118,27 @@
                         Esse placeat libero reiciendis eligendi?
                     </p>
                 </div>
+                <!--Start runway-gallery -->
                 <div class="runway-gallery">
                     <div class="trending">
                         <h1>TRENDING</h1>
                     </div>
+                    <!--Start img-gallery-container -->
                     <div class="img-gallery-container">
                         <img src="img/runway.jpg" alt="runway image"/>
-                    </div>
-                </div>
+                          <!--Bar-Absolute-->
+                        <div class="Bar-absolute-under-runway">
+                        </div>
+                    </div> <!--End img-gallery-container -->
+                    
+                </div><!--End runway-gallery -->
+                <!--Start social -->
                 <div class="social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-invision"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-invision"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div><!--End social -->
             </div><!--End right-content-->
         </section> <!--End Content Section-->
        
@@ -124,7 +148,7 @@
     
 
  
-<script src="js/main.js"></script>
+<script src="js/menu-mobile.js"></script>
 
 </body>
 
